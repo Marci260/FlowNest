@@ -3,12 +3,12 @@
     public class Genre
     {
         //class for genre entity, with id, name
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         //constructor
-        public Genre(int id, string name)
+        public Genre( string name)
         {
-            Id = id;
+            Id = System.Guid.NewGuid().ToString();
             Name = name;
         }
         //empty constructor

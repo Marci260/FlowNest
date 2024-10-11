@@ -5,6 +5,9 @@ namespace FlowNest
     {
         public static void Main(string[] args)
         {
+
+            //E:\Filmek   - path to local files
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
