@@ -43,8 +43,6 @@ namespace FlowNest.Data
         public void Update(T entity)
         {
             var old = FindById(entity.Id);
-            //ez reflexió - ne törődj vele mi ez :) 
-            //minden tulajdonság programozott átmásolása
             foreach (var prop in typeof(T).GetProperties())
             {
                 prop.SetValue(old, prop.GetValue(entity));

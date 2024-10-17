@@ -2,6 +2,7 @@
 using FlowNest.Data;
 using FlowNest.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace FlowNest.Controllers
 {
@@ -9,7 +10,7 @@ namespace FlowNest.Controllers
     {
         public string Title { get; set; }
 
-        public Genre Genre { get; set; }
+        public IList<Genre> Genres { get; set; }
 
         public string Director { get; set; }   
 
@@ -31,8 +32,33 @@ namespace FlowNest.Controllers
         [HttpPost]
         public void AddMovie(MovieCreateDto dto)
         {
-            var m = new Movie(dto.Title, dto.Genre, dto.Director);
+            var m = new Movie(dto.Title, dto.Genres, dto.Director);
             repo.Create(m);
+        }
+
+        [HttpGet]
+        public IEnumerable<Movie> GetAll()
+        {
+            return repo.GetAll();
+        }
+
+        [HttpGet("{id}")]
+        public Movie Get(string id)
+        {
+            return repo.FindById(id);
+        }
+
+       
+        [HttpPut]
+        public void UpdateMovie(Movie m)
+        {
+            repo.Update(m);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(Movie movie)
+        {
+            repo.Delete(movie);
         }
     }
 }

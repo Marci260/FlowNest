@@ -1,4 +1,5 @@
 ﻿using FlowNest.Entities.Interfaces;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Principal;
@@ -32,17 +33,17 @@ namespace FlowNest.Entities.Models
         [StringLength(100)]
         public string Title { get; set; }
         public DateTime ReleasedDate { get; set; }
-        public Genre Genre { get; set; }
+        public IList<Genre> Genres { get; set; }
         public string Director { get; set; }
         [NotMapped]
         public virtual ICollection<Rating>? Ratings { get; set; }
         // constructor
-        public Movie(string title, Genre genre, string director)
+        public Movie(string title, IList<Genre> genres, string director)
         {
             Id = System.Guid.NewGuid().ToString();
             Title = title;
             ReleasedDate = System.DateTime.Now;
-            Genre = genre;
+            Genres = genres;
             Director = director;
         }
         //empty constructor

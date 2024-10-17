@@ -1,6 +1,7 @@
 
 using FlowNest.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace FlowNest
 {
@@ -14,6 +15,12 @@ namespace FlowNest
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddTransient(typeof(Repository<>));
+
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+              
+            });
 
             builder.Services.AddDbContext<FlowNestDBContext>(options =>
             {
