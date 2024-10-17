@@ -27,7 +27,7 @@
         public string Director { get; set; }
         public int Rating { get; set; }
         // constructor
-        public Movie(string title, int releasedDate, string genre, string director, int rating)
+        public Movie(string title, int releasedDate, Genre genre, string director, int rating)
         {
             Id = System.Guid.NewGuid().ToString();
             Title = title;
