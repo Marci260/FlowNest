@@ -1,0 +1,35 @@
+﻿using FlowNest.Entities.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlowNest.Data
+{
+    public class FlowNestDBContext : DbContext
+    {
+        public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
+
+        public FlowNestDBContext(DbContextOptions<FlowNestDBContext> ctx)
+        : base(ctx)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Movie>()
+                .HasMany(m => m.Ratings)
+                .WithOne(r => r.Movie)
+                .HasForeignKey(r => r.MovieId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
+

@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FlowNest.Entities.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Principal;
 
 namespace FlowNest.Entities.Models
 {
@@ -20,7 +22,7 @@ namespace FlowNest.Entities.Models
         Thriller,
         Western
     }
-    public class Movie
+    public class Movie : IIdEntity
     {
         //class for mive entity, with id, title,year, genre,director, rating
         [StringLength(50)]
@@ -29,17 +31,17 @@ namespace FlowNest.Entities.Models
         public string Id { get; set; }
         [StringLength(100)]
         public string Title { get; set; }
-        public int ReleasedDate { get; set; }
+        public DateTime ReleasedDate { get; set; }
         public Genre Genre { get; set; }
         public string Director { get; set; }
         [NotMapped]
         public virtual ICollection<Rating>? Ratings { get; set; }
         // constructor
-        public Movie(string title, int releasedDate, Genre genre, string director)
+        public Movie(string title, Genre genre, string director)
         {
             Id = System.Guid.NewGuid().ToString();
             Title = title;
-            ReleasedDate = releasedDate;
+            ReleasedDate = System.DateTime.Now;
             Genre = genre;
             Director = director;
         }

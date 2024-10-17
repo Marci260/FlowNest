@@ -1,4 +1,7 @@
 
+using FlowNest.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FlowNest
 {
     public class Program
@@ -9,6 +12,13 @@ namespace FlowNest
             //E:\Filmek   - path to local files
 
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddTransient(typeof(Repository<>));
+
+            builder.Services.AddDbContext<FlowNestDBContext>(options =>
+            {
+                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FlowNestDB;Trusted_Connection=True;TrustServerCertificate=True");
+            });
 
             // Add services to the container.
 

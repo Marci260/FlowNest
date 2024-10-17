@@ -1,45 +1,38 @@
-﻿using FlowNest.Data;
-using FlowNest.Models;
+﻿
+using FlowNest.Data;
+using FlowNest.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlowNest.Controllers
 {
+    public class MovieCreateDto
+    {
+        public string Title { get; set; }
+
+        public Genre Genre { get; set; }
+
+        public string Director { get; set; }   
+
+        //string title, int releasedDate, Genre genre, string director
+    }
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class MovieController : ControllerBase
     {
+         Repository<Movie> repo;
 
-        MovieDbContext ctx = new MovieDbContext();
-
-        [HttpGet]
-        public IEnumerable<Movie> GetAll()
+        public MovieController(Repository<Movie> repo)
         {
-            return ctx.Movies;
+            this.repo = repo;
         }
 
-        [HttpGet("{id}")]
-        public Movie Get(string id)
-        {
-            return ctx.Movies.First(x => x.Id == id);
-        }
         [HttpPost]
-        public void Post([FromBody] Movie movie)
+        public void AddMovie(MovieCreateDto dto)
         {
-            movie.Id = System.Guid.NewGuid().ToString();//next step is to add this to the database
-            ctx.Movies.Add(movie);
-            ctx.SaveChanges();
+            var m = new Movie(dto.Title, dto.Genre, dto.Director);
+            repo.Create(m);
         }
-
-        [HttpPut("{id}")]
-        public void Put(Movie movie) {
-            var m = ctx.Movies.First(x => x.Id == movie.Id);
-            m.Title = movie.Title;
-            m.Year = movie.Year;
-            m.Genre = movie.Genre;
-            m.Director = movie.Director;
-            m.Rating = movie.Rating;
-            ctx.SaveChanges();
-        }
-
     }
 }
