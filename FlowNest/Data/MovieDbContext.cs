@@ -1,4 +1,5 @@
-﻿using FlowNest.Models;
+﻿using FlowNest.Endpoint.Models;
+using FlowNest.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 

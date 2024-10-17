@@ -1,6 +1,12 @@
-﻿namespace FlowNest.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlowNest.Entities.Models
 {
-    public class Show
+    public  class Show
     {
         //class for show entity, with id, title, year, genre, rating
         public string Id { get; set; }

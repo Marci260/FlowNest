@@ -1,4 +1,10 @@
-﻿namespace FlowNest.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlowNest.Entities.Models
 {
     public class Cast
     {
@@ -17,7 +23,5 @@
         public Cast()
         {
         }
-
-
     }
 }
