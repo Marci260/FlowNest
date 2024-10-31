@@ -33,7 +33,7 @@ namespace FlowNest.Entities.Models
         [StringLength(100)]
         public string Title { get; set; }
         public DateTime ReleasedDate { get; set; }
-        public IList<Genre> Genres { get; set; }
+        public IList<Genre>? Genres { get; set; }
         public string Director { get; set; }
         [NotMapped]
         public virtual ICollection<Rating>? Ratings { get; set; }

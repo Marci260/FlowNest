@@ -1,64 +1,53 @@
 ﻿
 using FlowNest.Data;
+using FlowNest.Entities.DTOs.Movie;
 using FlowNest.Entities.Models;
+using FlowNest.Logic.Logic;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 
 namespace FlowNest.Controllers
 {
-    public class MovieCreateDto
-    {
-        public string Title { get; set; }
-
-        public IList<Genre> Genres { get; set; }
-
-        public string Director { get; set; }   
-
-        //string title, int releasedDate, Genre genre, string director
-    }
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class MovieController : ControllerBase
     {
-         Repository<Movie> repo;
+        MovieLogic logic;
 
-        public MovieController(Repository<Movie> repo)
+        public MovieController(MovieLogic logic)
         {
-            this.repo = repo;
+            this.logic = logic;
         }
 
         [HttpPost]
-        public void AddMovie(MovieCreateDto dto)
+        public void AddMovie(MovieCreateOrUpdateDto dto)
         {
-            var m = new Movie(dto.Title, dto.Genres, dto.Director);
-            repo.Create(m);
+            logic.AddMovie(dto);
         }
 
         [HttpGet]
-        public IEnumerable<Movie> GetAll()
+        public IEnumerable<MovieShortViewDto> GetAllMovies()
         {
-            return repo.GetAll();
+            return logic.GetAllMovies();
         }
 
         [HttpGet("{id}")]
-        public Movie Get(string id)
+        public MovieViewDto GetMovie(string id)
         {
-            return repo.FindById(id);
+           return logic.GetMovie(id);
         }
 
        
-        [HttpPut]
-        public void UpdateMovie(Movie m)
+        [HttpPut("{id}")]
+        public void UpdateMovie( string id,[FromBody] MovieCreateOrUpdateDto dto)
         {
-            repo.Update(m);
+            logic.UpdateMovie(id,dto);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(Movie movie)
+        public void Delete(string id)
         {
-            repo.Delete(movie);
+            logic.DeleteMovie(id);
         }
     }
 }
