@@ -31,6 +31,10 @@ namespace FlowNest.Data
                 .HasForeignKey(r => r.MovieId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Movie>()
+        .Property(m => m.Genres)
+        .HasConversion<string>();
+
             base.OnModelCreating(modelBuilder);
         }
     }

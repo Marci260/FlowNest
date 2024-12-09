@@ -20,7 +20,7 @@ namespace FlowNest
         public static void Main(string[] args)
         {
 
-            //E:\Filmek   - path to local files
+           
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +60,13 @@ namespace FlowNest
                     ValidIssuer = "flownest.com",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!"))
                 };
-            }); ;
+            });
+
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+
+            });
 
 
 
@@ -77,11 +83,9 @@ namespace FlowNest
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            builder.Services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+           
 
-            });
+           
             /*
             builder.Services.AddControllers(opt => 
             {

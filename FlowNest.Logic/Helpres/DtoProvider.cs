@@ -19,7 +19,7 @@ namespace FlowNest.Logic.Helpres
 
         public Mapper Mapper { get; }
 
-        public DtoProvider()
+        public DtoProvider(UserManager<AppUser> userManager)
         {
             this.userManager = userManager;
             var config = new MapperConfiguration(cfg =>
@@ -38,9 +38,13 @@ namespace FlowNest.Logic.Helpres
 
 
                 cfg.CreateMap<Movie, MovieViewDto>();
-                cfg.CreateMap<MovieCreateOrUpdateDto, Movie>();
+                cfg.CreateMap<MovieCreateOrUpdateDto, Movie>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Genres = src.Genre;
+                }); ;
+                cfg.CreateMap<Movie, MovieCreateOrUpdateDto>();
                 cfg.CreateMap<RatingCreateDto, Rating>();
-                cfg.CreateMap<Rating, RatingViewDto>();
                 cfg.CreateMap<Rating, RatingViewDto>()
                .AfterMap((src, dest) =>
                {

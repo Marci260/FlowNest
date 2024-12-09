@@ -1,4 +1,5 @@
 ﻿using FlowNest.Entities.DTOs.Rating;
+using FlowNest.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace FlowNest.Entities.DTOs.Movie
     {
         public string Id { get; set; } = "";
         public string Title { get; set; } = "";
-        public string Genre { get; set; } = "";
+        public IEnumerable<Genre>? Genres { get; set; }
         public IEnumerable<RatingViewDto>? Ratings { get; set; }
 
         //extra property

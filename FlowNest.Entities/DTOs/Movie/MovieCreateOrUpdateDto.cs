@@ -11,8 +11,10 @@ namespace FlowNest.Entities.DTOs.Movie
     {
         public required string Title { get; set; } = "";
 
-        public  Genre Genre { get; set; } = Genre.Action;
+        public  IEnumerable<Genre>? Genre { get; set; }
 
         public string Director { get; set; } = "";
+
+        //public byte[] Image { get; set; } = new byte[0];
     }
 }

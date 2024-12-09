@@ -20,9 +20,10 @@ namespace FlowNest.Logic.Logic
         {
             Movie m = dtoProvider.Mapper.Map<Movie>(dto);
 
-          
+
             if (repo.GetAll().FirstOrDefault(x => x.Title == m.Title) == null)
             {
+            
                 repo.Create(m);
             }
             else
@@ -30,11 +31,12 @@ namespace FlowNest.Logic.Logic
                 throw new ArgumentException("Movie already exist with the same title!");
             }
         }
-
+        
         public IEnumerable<MovieShortViewDto> GetAllMovies()
         {
             return repo.GetAll().Select(x =>
                 dtoProvider.Mapper.Map<MovieShortViewDto>(x)
+
             );
         }
 
@@ -53,6 +55,7 @@ namespace FlowNest.Logic.Logic
         public MovieViewDto GetMovie(string id)
         {
             var model = repo.FindById(id);
+            //var c = dtoProvider.Mapper.Map<MovieViewDto>(model).Genres;
             return dtoProvider.Mapper.Map<MovieViewDto>(model);
         }
     }

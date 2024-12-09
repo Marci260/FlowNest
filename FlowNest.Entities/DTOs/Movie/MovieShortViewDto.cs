@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlowNest.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace FlowNest.Entities.DTOs.Movie
 
         public string Title { get; set; } = "";
 
-        public string Genre { get; set; } = "";
+        public IEnumerable<Genre>? Genres { get; set; }
 
         public double AverageRating { get; set; } = 0;
     }

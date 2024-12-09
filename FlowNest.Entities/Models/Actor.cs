@@ -14,6 +14,8 @@ namespace FlowNest.Entities.Models
         public string Name { get; set; }
         public DateTime Birthdate { get; set; }
 
+        public IEnumerable<Movie>? Movies { get; set; }
+
         //constructor
         public Actor(string name, DateTime birthdate)
         {
