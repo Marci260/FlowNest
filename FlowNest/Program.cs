@@ -61,12 +61,30 @@ namespace FlowNest
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!Almafa1234!!!"))
                 };
             });
+            //to-do frontend
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAngularApp", policy =>
+            //    {
+            //        policy.WithOrigins("http://localhost:4200")
+            //              .AllowAnyMethod()
+            //              .AllowAnyHeader();
+            //    });
+            //});
 
+            builder.Services.AddControllers(opt =>
+            {
+
+                opt.Filters.Add<ExceptionFilter>();
+                opt.Filters.Add<ValidationFilterAttribute>();
+
+            });
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 
             });
+
 
 
 
@@ -86,14 +104,9 @@ namespace FlowNest
            
 
            
-            /*
-            builder.Services.AddControllers(opt => 
-            {
-               
-                opt.Filters.Add<ExceptionFilter>();
-                opt.Filters.Add<ValidationFilterAttribute>();
-            });
-            */
+            
+            
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(option =>

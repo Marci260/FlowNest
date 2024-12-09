@@ -8,22 +8,24 @@ namespace FlowNest.Endpoint.Helpers
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-           
+
+            if (!context.ModelState.IsValid)
             {
-                //context.Result = new UnprocessableEntityObjectResult(context.ModelState);
-                var error = new ErrorModel
-                (
-                    String.Join(',',
-                    (context.ModelState.Values.SelectMany(t => t.Errors.Select(z => z.ErrorMessage))).ToArray())
-                );
-                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-                context.Result = new JsonResult(error);
+                var errorMessages = context.ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                if (errorMessages.Any())
+                {
+                    var error = new ErrorModel(string.Join(",", errorMessages));
+                    context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                    context.Result = new JsonResult(error);
+                }
             }
         }
 
-        public void OnActionExecuting(ActionExecutingContext context)
-        {
-            
-        }
+        public void OnActionExecuting(ActionExecutingContext context) { }
+
     }
 }
