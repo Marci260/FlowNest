@@ -36,5 +36,8 @@ namespace FlowNest.Entities.Models
 
         [Range(1, 5)]
         public int Rate { get; set; }
+
+        [StringLength(50)]
+        public string UserId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FlowNest.Entities.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace FlowNest.Data
 {
-    public class FlowNestDBContext : DbContext
+    public class FlowNestDBContext : IdentityDbContext
     {
         public DbSet<Movie> Movies { get; set; }
 
         public DbSet<Rating> Ratings { get; set; }
+
+        public DbSet<AppUser> AppUsers { get; set; }
 
         public FlowNestDBContext(DbContextOptions<FlowNestDBContext> ctx)
         : base(ctx)

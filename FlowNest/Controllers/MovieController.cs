@@ -3,6 +3,7 @@ using FlowNest.Data;
 using FlowNest.Entities.DTOs.Movie;
 using FlowNest.Entities.Models;
 using FlowNest.Logic.Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 
@@ -20,6 +21,7 @@ namespace FlowNest.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public void AddMovie(MovieCreateOrUpdateDto dto)
         {
             logic.AddMovie(dto);
@@ -39,12 +41,14 @@ namespace FlowNest.Controllers
 
        
         [HttpPut("{id}")]
+        [Authorize]
         public void UpdateMovie( string id,[FromBody] MovieCreateOrUpdateDto dto)
         {
             logic.UpdateMovie(id,dto);
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public void Delete(string id)
         {
             logic.DeleteMovie(id);
