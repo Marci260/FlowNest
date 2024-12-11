@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FlowNest.Data;
+using FlowNest.Entities.DTOs.Actor;
 using FlowNest.Entities.DTOs.Movie;
 using FlowNest.Entities.DTOs.Rating;
 using FlowNest.Entities.DTOs.User;
@@ -45,7 +46,11 @@ namespace FlowNest.Logic.Helpres
                 }); ;
                 cfg.CreateMap<Movie, MovieCreateOrUpdateDto>();
                 cfg.CreateMap<RatingCreateDto, Rating>();
+                cfg.CreateMap<Actor, CreateOrUpdateActorDto>();
+                cfg.CreateMap<CreateOrUpdateActorDto, Actor>();
+
                 cfg.CreateMap<Rating, RatingViewDto>()
+               
                .AfterMap((src, dest) =>
                {
                    var user = userManager.Users.First(u => u.Id == src.UserId);

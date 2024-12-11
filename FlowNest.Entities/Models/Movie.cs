@@ -39,6 +39,9 @@ namespace FlowNest.Entities.Models
         public IEnumerable<Genre>? Genres { get; set; }
         public string Director { get; set; }
 
+        [NotMapped]
+        public ICollection<Actor>? Actors { get; set; }
+
         //to-do
         //public byte[] Image { get; set; }
         [NotMapped]

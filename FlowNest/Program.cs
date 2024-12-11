@@ -28,6 +28,7 @@ namespace FlowNest
             builder.Services.AddTransient<DtoProvider>();
             builder.Services.AddTransient<MovieLogic>();
             builder.Services.AddTransient<RatingLogic>();
+            builder.Services.AddTransient<ActorLogic>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>(
                  option =>

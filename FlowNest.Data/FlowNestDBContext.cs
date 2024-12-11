@@ -16,6 +16,8 @@ namespace FlowNest.Data
 
         public DbSet<Rating> Ratings { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
         public DbSet<AppUser> AppUsers { get; set; }
 
         public FlowNestDBContext(DbContextOptions<FlowNestDBContext> ctx)
@@ -32,8 +34,12 @@ namespace FlowNest.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Movie>()
-        .Property(m => m.Genres)
-        .HasConversion<string>();
+            .Property(m => m.Genres)
+            .HasConversion<string>();
+
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using FlowNest.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowNest.Entities.Models
 {
-    public class Actor
+    public class Actor : IIdEntity
     {
 
         //class for actor entity, with id, name, birthdate
@@ -14,7 +16,8 @@ namespace FlowNest.Entities.Models
         public string Name { get; set; }
         public DateTime Birthdate { get; set; }
 
-        public IEnumerable<Movie>? Movies { get; set; }
+        [NotMapped]
+        public virtual ICollection<Movie>? Movies { get; set; }
 
         //constructor
         public Actor(string name, DateTime birthdate)
