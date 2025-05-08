@@ -1,22 +1,7 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
-import { provideRouter, Routes } from '@angular/router';
-import { MoviesComponent } from './app/movies/movies.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
-
-// Útvonalak definiálása
-// const routes: Routes = [
-//   { path: '', component: AppComponent }, // Alapértelmezett útvonal
-//   { path: 'movies', component: MoviesComponent }, // /movies útvonal
-//   { path: '**', redirectTo: '' } // Wildcard útvonal
-// ];
-
-// Alkalmazás indítása standalone módban
-// bootstrapApplication(AppComponent, {
-//   providers: [
-//     provideRouter(routes) // Útvonalak konfigurálása
-//   ]
-// });
+platformBrowserDynamic().bootstrapModule(AppModule, {
+  ngZoneEventCoalescing: true,
+})
+  .catch(err => console.error(err));

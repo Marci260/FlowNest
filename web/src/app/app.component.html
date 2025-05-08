@@ -1,14 +1,5 @@
-<main >
-  <div> 
-      <ul>
-        <li><a routerLink="./app.component.html"><img class="container logo button button1" src="logo2.jpg" alt="flownest logo" class="logo"></a></li>
-        <li><a class="button button1" routerLink="./app.component.html"> Home </a></li>
-        <li><a class="button button1" routerLink="./movies/movies.component.html"> Movies </a></li>
-        <li><a class="button button1" routerLink="./series/series.component.html"> Series </a></li>
-        <li><a class="button button1" routerLink="./watch-list/watch-list.component.html"> Watch list </a></li>
-        <li class="profile-button"><a class="button button1" routerLink="./watch-list/watch-list.component.html"> Profile </a></li>
-      </ul>
-  </div>
-   
-</main>
-<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<div class="mx-2 my-2 px-3 py-3">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

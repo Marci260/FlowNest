@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-series',
-  imports: [],
+  standalone: false,
   templateUrl: './series.component.html',
-  styleUrl: './series.component.css'
+  styleUrl: './series.component.sass'
 })
 export class SeriesComponent {
 
