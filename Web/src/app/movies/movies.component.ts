@@ -9,10 +9,15 @@ import { Router } from '@angular/router';
   styleUrl: './movies.component.sass'
 })
 export class MoviesComponent {
-movies: Movie[] = []
+  movies: Movie[] = []
 
+
+  
 constructor(private router: Router){
+  // this.seed();
+  // this.save();
   this.load();
+  console.log(this.movies)
 }
 
   delete(movie: Movie): void {
@@ -29,35 +34,41 @@ constructor(private router: Router){
   }
 
   load(): void {
-    let data = JSON.parse(localStorage.getItem("bprof_devs") ?? "[]")
+    let data = JSON.parse(localStorage.getItem("movies") ?? "[]")
     Object.values(data).map(x => this.movies.push(Object.assign(new Movie(), x)))
-
-    // data.map((element: any) => {
-    //   this.developers.push(Object.assign(new Developer(), element))
-    // })
   }
 
   seed(): void {
     let d1 = new Movie()
+    d1.id = "asdasdasd-asdasdasd-asdasdasd"
     d1.title = "Iron man"
     d1.director="Mittom Én"
     d1.rating = 4.1
     d1.release = 20000404
-
     this.movies.push(d1)
 
     let d2 = new Movie()
-  
+    d2.id = "asdasd-asdasd-asdasdasd-asdasd"
+    d2.title = "Iron man"
+    d2.director="Mittom Én"
+    d2.rating = 4.1
+    d2.release = 20000404
     this.movies.push(d2)
 
     let d3 = new Movie()
     d3.id = "d255b2e3-9fde-c833-1cda-fa9ee62e851c"
-   
+    d3.title = "Iron man"
+    d3.director="Mittom Én"
+    d3.rating = 4.1
+    d3.release = 20000404
     this.movies.push(d3)
 
     let d4 = new Movie()
     d4.id = "20ef4e13-94db-8a96-ca02-4f65a2a545d2"
-   
+    d4.title = "Iron man"
+    d4.director="Mittom Én"
+    d4.rating = 4.1
+    d4.release = 20000404
     this.movies.push(d4)
   }
 }
