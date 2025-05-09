@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MovieService } from '../../movie.service';
 
 @Component({
   selector: 'app-series',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './series.component.sass'
 })
 export class SeriesComponent {
-
+constructor(private router: Router, public movieService: MovieService){}
 }

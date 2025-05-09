@@ -1,0 +1,24 @@
+<h2>Series</h2>
+
+<table *ngIf="movieService.movies.length;else noSeries">
+    <thead>
+        <th> Title </th>
+        <th> Director </th>
+        <th> Release Date </th>
+        <th> Rating </th>
+        <th> Actions </th>
+    </thead>
+    <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tbody>
+</table>
+
+<ng-template #noSeries>
+    <div  role="alert">
+        <b><p>There are no series in the system, yet!</p></b>
+    </div>
+</ng-template>

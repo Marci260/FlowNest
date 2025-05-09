@@ -1,0 +1,38 @@
+<nav>
+    <div>
+        <ul>
+            <li>
+                <a aria-current="page" routerLink="/home">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a aria-current="page" routerLink="/movies">
+                    Movies
+                </a>
+            </li>
+            <li>
+                <a aria-current="page" routerLink="/series">
+                    Series
+                </a>
+            </li>
+            <li>
+                <a aria-current="page" routerLink="/wishlist">
+                    WishList
+                </a>
+            </li>
+            
+             <li style="float:right">
+                <a aria-current="page" routerLink="/profile">
+                    Profile
+                </a>
+            </li>
+            <li>
+                <div class="search-bar" *ngIf="showSearch">
+                    <input type="search" placeholder="Search...">
+                    <button>Search</button>
+                </div>
+            </li> 
+        </ul>
+    </div>
+</nav>

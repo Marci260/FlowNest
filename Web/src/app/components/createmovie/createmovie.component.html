@@ -1,0 +1,7 @@
+<h2>Create movie</h2>
+<input type="text"  placeholder="Id" [(ngModel)]="movie.id" disabled>
+<input type="text"  placeholder="Title" [(ngModel)]="movie.title">
+<input type="email"  placeholder="ReleaseDate" [(ngModel)]="movie.release">
+<input type="text"  placeholder="Director" [(ngModel)]="movie.director">
+<input type="number"  placeholder="Rating" [(ngModel)]="movie.rating">
+<button class="btn btn-success" (click)="save()">save</button>

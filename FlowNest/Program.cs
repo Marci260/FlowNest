@@ -63,15 +63,15 @@ namespace FlowNest
                 };
             });
             //to-do frontend
-            //builder.Services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAngularApp", policy =>
-            //    {
-            //        policy.WithOrigins("http://localhost:4200")
-            //              .AllowAnyMethod()
-            //              .AllowAnyHeader();
-            //    });
-            //});
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
 
             builder.Services.AddControllers(opt =>
             {
@@ -140,6 +140,7 @@ namespace FlowNest
 
             var app = builder.Build();
 
+            app.UseCors("AllowAngularApp");
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -150,7 +151,6 @@ namespace FlowNest
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
